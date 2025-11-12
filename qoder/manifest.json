@@ -1,0 +1,10 @@
+{
+  "name": "Mario Quiz App",
+  "short_name": "MarioQuiz",
+  "description": "Aplicación de estudio interactiva estilo Mario Bros",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#4A90E2",
+  "orientation": "portrait"
+}

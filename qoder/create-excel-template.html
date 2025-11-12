@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Excel de Ejemplo - Mario Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .instructions {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .instructions h2 {
+            color: #FF6B6B;
+            margin-top: 0;
+        }
+        .instructions ol {
+            line-height: 2;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border: 2px solid #333;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #4ECDC4;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #FF6B6B;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: #E03131;
+            transform: translateY(-2px);
+        }
+        .note {
+            background: #FFE082;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #F9CA24;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Instrucciones para crear el archivo Excel</h1>
+        
+        <div class="instructions">
+            <h2>Formato del archivo Excel</h2>
+            <p>Tu archivo Excel debe tener las siguientes columnas en este orden exacto:</p>
+            <ol>
+                <li><strong>Columna A:</strong> Pregunta</li>
+                <li><strong>Columna B:</strong> Opción 1</li>
+                <li><strong>Columna C:</strong> Opción 2</li>
+                <li><strong>Columna D:</strong> Opción 3</li>
+                <li><strong>Columna E:</strong> Opción 4</li>
+                <li><strong>Columna F:</strong> Respuesta Correcta (debe coincidir exactamente con una de las opciones B, C, D o E)</li>
+                <li><strong>Columna G:</strong> Fundamento Legal</li>
+            </ol>
+        </div>
+
+        <h2>Ejemplo de estructura:</h2>
+        <table id="example-table">
+            <thead>
+                <tr>
+                    <th>Pregunta (A)</th>
+                    <th>Opción 1 (B)</th>
+                    <th>Opción 2 (C)</th>
+                    <th>Opción 3 (D)</th>
+                    <th>Opción 4 (E)</th>
+                    <th>Respuesta Correcta (F)</th>
+                    <th>Fundamento Legal (G)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>¿Cuál es la capital de España?</td>
+                    <td>Barcelona</td>
+                    <td>Madrid</td>
+                    <td>Valencia</td>
+                    <td>Sevilla</td>
+                    <td>Madrid</td>
+                    <td>Constitución Española, Artículo 5</td>
+                </tr>
+                <tr>
+                    <td>¿En qué año se descubrió América?</td>
+                    <td>1492</td>
+                    <td>1500</td>
+                    <td>1453</td>
+                    <td>1520</td>
+                    <td>1492</td>
+                    <td>Historia Universal, Capítulo XV</td>
+                </tr>
+                <tr>
+                    <td>¿Cuántos continentes hay en la Tierra?</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>7</td>
+                    <td>Geografía Mundial, Sección 2.1</td>
+                </tr>
+                <tr>
+                    <td>¿Qué planeta es conocido como el planeta rojo?</td>
+                    <td>Venus</td>
+                    <td>Marte</td>
+                    <td>Júpiter</td>
+                    <td>Saturno</td>
+                    <td>Marte</td>
+                    <td>Astronomía Básica, Tema 3</td>
+                </tr>
+                <tr>
+                    <td>¿Cuál es el océano más grande del mundo?</td>
+                    <td>Atlántico</td>
+                    <td>Índico</td>
+                    <td>Pacífico</td>
+                    <td>Ártico</td>
+                    <td>Pacífico</td>
+                    <td>Oceanografía, Capítulo 1</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="download-btn" onclick="exportToExcel()">📥 Descargar Excel de Ejemplo</button>
+
+        <div class="note">
+            <strong>⚠️ Nota importante:</strong>
+            <ul>
+                <li>La primera fila debe contener los encabezados de las columnas</li>
+                <li>La respuesta correcta (columna F) debe coincidir exactamente con el texto de una de las opciones (B, C, D o E)</li>
+                <li>Puedes agregar tantas preguntas como desees, simplemente añade más filas</li>
+                <li>Guarda el archivo en formato .xlsx o .xls</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        function exportToExcel() {
+            // Crear datos de ejemplo
+            const data = [
+                ['Pregunta', 'Opción 1', 'Opción 2', 'Opción 3', 'Opción 4', 'Respuesta Correcta', 'Fundamento Legal'],
+                ['¿Cuál es la capital de España?', 'Barcelona', 'Madrid', 'Valencia', 'Sevilla', 'Madrid', 'Constitución Española, Artículo 5'],
+                ['¿En qué año se descubrió América?', '1492', '1500', '1453', '1520', '1492', 'Historia Universal, Capítulo XV'],
+                ['¿Cuántos continentes hay en la Tierra?', '5', '6', '7', '8', '7', 'Geografía Mundial, Sección 2.1'],
+                ['¿Qué planeta es conocido como el planeta rojo?', 'Venus', 'Marte', 'Júpiter', 'Saturno', 'Marte', 'Astronomía Básica, Tema 3'],
+                ['¿Cuál es el océano más grande del mundo?', 'Atlántico', 'Índico', 'Pacífico', 'Ártico', 'Pacífico', 'Oceanografía, Capítulo 1'],
+                ['¿Cuál es el elemento químico más abundante en el universo?', 'Oxígeno', 'Carbono', 'Hidrógeno', 'Nitrógeno', 'Hidrógeno', 'Química General, Capítulo 2'],
+                ['¿En qué país se encuentra la Torre Eiffel?', 'Italia', 'España', 'Francia', 'Alemania', 'Francia', 'Patrimonio Mundial UNESCO'],
+                ['¿Cuántos días tiene un año bisiesto?', '365', '366', '364', '367', '366', 'Calendario Gregoriano'],
+                ['¿Quién escribió Don Quijote de la Mancha?', 'Lope de Vega', 'Miguel de Cervantes', 'García Lorca', 'Calderón de la Barca', 'Miguel de Cervantes', 'Literatura Española Clásica'],
+                ['¿Cuál es la velocidad de la luz?', '200,000 km/s', '300,000 km/s', '400,000 km/s', '500,000 km/s', '300,000 km/s', 'Física Moderna, Ley de Einstein']
+            ];
+
+            // Crear libro de trabajo
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(data);
+
+            // Ajustar ancho de columnas
+            ws['!cols'] = [
+                { wch: 50 }, // Pregunta
+                { wch: 20 }, // Opción 1
+                { wch: 20 }, // Opción 2
+                { wch: 20 }, // Opción 3
+                { wch: 20 }, // Opción 4
+                { wch: 25 }, // Respuesta Correcta
+                { wch: 40 }  // Fundamento Legal
+            ];
+
+            // Agregar hoja al libro
+            XLSX.utils.book_append_sheet(wb, ws, 'Preguntas');
+
+            // Descargar archivo
+            XLSX.writeFile(wb, 'preguntas_ejemplo.xlsx');
+        }
+    </script>
+</body>
+</html>

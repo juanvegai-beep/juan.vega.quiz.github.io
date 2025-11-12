@@ -1,0 +1,773 @@
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    background: #5c94fc;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    color: #ffffff;
+}
+
+/* Nubes flotantes de fondo estilo Mario */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(ellipse 80px 60px at 20% 20%, white 40%, transparent 50%),
+        radial-gradient(ellipse 100px 70px at 60% 15%, white 40%, transparent 50%),
+        radial-gradient(ellipse 90px 65px at 80% 25%, white 40%, transparent 50%),
+        radial-gradient(ellipse 85px 60px at 15% 70%, white 40%, transparent 50%),
+        radial-gradient(ellipse 95px 68px at 85% 75%, white 40%, transparent 50%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+    animation: float-clouds 80s linear infinite;
+}
+
+@keyframes float-clouds {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(30px) translateY(-20px); }
+    100% { transform: translateX(0) translateY(0); }
+}
+
+/* Suelo eliminado */
+
+
+
+/* Contenedor principal */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Pantallas */
+.screen {
+    display: none;
+    width: 100%;
+}
+
+.screen.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Títulos estilo Mario Bros */
+.title-mario {
+    font-size: 4rem;
+    font-weight: 300;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 
+        3px 3px 0 #000000,
+        -1px -1px 0 #000000,
+        1px -1px 0 #000000,
+        -1px 1px 0 #000000;
+    margin-bottom: 30px;
+    animation: bounce-block 2.5s ease-in-out infinite;
+    line-height: 0;
+    padding: 0;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #FBD000 0%, #E0BB00 50%, #B89400 100%);
+    border: 5px solid #000000;
+    border-radius: 10px;
+    box-shadow: 
+        0 8px 0 #6B5400;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title-mario::before {
+    display: none;
+}
+
+.title-mario::after {
+    display: none;
+}
+
+@keyframes bounce-block {
+    0%, 100% { 
+        transform: translateY(0);
+    }
+    50% { 
+        transform: translateY(-8px);
+    }
+}
+
+
+
+/* Personaje Mario */
+.mario-character {
+    font-size: 6rem;
+    text-align: center;
+    margin: 30px 0;
+    animation: jump-mario 1.5s ease-in-out infinite;
+    filter: drop-shadow(5px 5px 0 rgba(0, 0, 0, 0.3));
+}
+
+@keyframes jump-mario {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-25px); }
+}
+
+/* Bloques de Mario */
+.mario-blocks {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.block {
+    font-size: 4rem;
+    display: inline-block;
+    filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.4));
+    animation: float-block 2s ease-in-out infinite;
+}
+
+.block:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.block:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.coin-block {
+    animation: bounce-coin 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes bounce-coin {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-12px); }
+}
+
+@keyframes float-block {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Botones estilo Mario Bros */
+.mario-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    padding: 18px 35px;
+    margin: 12px;
+    border: 5px solid #000;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    line-height: 1.5;
+    font-weight: bold;
+    box-shadow: 0 8px 0 #000;
+}
+
+.mario-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 4px 0 #000;
+}
+
+.btn-primary {
+    background: linear-gradient(to bottom, #00d800 0%, #00a800 100%);
+    color: white;
+    text-shadow: 2px 2px 0 #006400;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to bottom, #00ff00 0%, #00c800 100%);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 10px 0 #000;
+}
+
+.btn-secondary {
+    background: linear-gradient(to bottom, #ffd700 0%, #ffb700 100%);
+    color: #000;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(to bottom, #ffe033 0%, #ffc700 100%);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 10px 0 #000;
+}
+
+.btn-back {
+    background: linear-gradient(to bottom, #ff5555 0%, #ff0000 100%);
+    color: #fff;
+    text-shadow: 2px 2px 0 #8b0000;
+}
+
+.btn-back:hover {
+    background: linear-gradient(to bottom, #ff7777 0%, #ff3333 100%);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 10px 0 #000;
+}
+
+/* Display de monedas estilo Mario */
+.coins-display {
+    background: linear-gradient(135deg, #ffa000 0%, #ff6f00 100%);
+    border: 5px solid #000;
+    border-radius: 20px;
+    padding: 18px 35px;
+    margin: 25px 0;
+    font-size: 2rem;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    animation: coin-bounce 2s infinite;
+    box-shadow: 
+        0 6px 0 #8b5a00,
+        inset 0 3px 0 rgba(255,255,255,0.4);
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+}
+
+@keyframes coin-bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+
+
+.coin-icon {
+    font-size: 2.5rem;
+    animation: star-flip 4s linear infinite;
+}
+
+@keyframes star-flip {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+/* Área de carga de archivos estilo Mario */
+.file-upload-area {
+    width: 100%;
+    margin: 30px 0;
+}
+
+.upload-box {
+    background: #fff;
+    border: 5px solid #000;
+    border-radius: 15px;
+    padding: 50px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 0 #666;
+}
+
+.upload-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 0 #666;
+    background: #ffffcc;
+}
+
+.upload-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    animation: icon-bounce 2s ease-in-out infinite;
+}
+
+@keyframes icon-bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.upload-box p {
+    font-size: 1rem;
+    color: #333;
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.upload-box input[type="file"] {
+    display: none;
+}
+
+.file-name {
+    color: #00a800;
+    font-weight: bold;
+    margin-top: 20px !important;
+}
+
+/* Barra de progreso estilo Mario */
+.progress-bar {
+    width: 100%;
+    height: 35px;
+    background: #000;
+    border: 5px solid #000;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    box-shadow: inset 0 4px 0 rgba(0,0,0,0.3);
+}
+
+.progress-bar::before {
+    display: none;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00d800 0%, #00a800 100%);
+    transition: width 0.5s ease;
+    position: relative;
+    box-shadow: inset 0 3px 0 rgba(255,255,255,0.4);
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 20px,
+        rgba(255,255,255,0.2) 20px,
+        rgba(255,255,255,0.2) 40px
+    );
+    animation: progress-move 1s linear infinite;
+}
+
+@keyframes progress-move {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(40px); }
+}
+
+/* Número de pregunta - OCULTO */
+.question-number {
+    display: none !important;
+}
+
+/* Caja de pregunta estilo Mario */
+.question-box {
+    background: #fff;
+    border: 5px solid #000;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 25px 0;
+    box-shadow: 0 8px 0 #666, inset 0 3px 0 rgba(255,255,255,0.7);
+    position: relative;
+}
+
+.question-box::before {
+    display: none;
+}
+
+@keyframes question-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.question-box h3 {
+    font-size: 1.2rem;
+    color: #000;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.fundamento-box {
+    background: linear-gradient(135deg, #fff9c4 0%, #ffe082 100%);
+}
+
+.fundamento-box::before {
+    content: '⚖️';
+    background: linear-gradient(to bottom, #4fc3f7 0%, #29b6f6 100%);
+    box-shadow: 0 6px 0 #01579b;
+}
+
+.fundamento-box h3 {
+    color: #333;
+}
+
+/* Contenedor de opciones */
+.options-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 25px 0;
+    width: 100%;
+}
+
+/* Botones de opciones estilo Mario */
+.option-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    padding: 25px;
+    background: linear-gradient(to bottom, #ffffff 0%, #e6e6e6 100%);
+    border: 5px solid #000;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 0 #000;
+    text-align: left;
+    color: #000;
+    line-height: 1.8;
+    position: relative;
+}
+
+.option-btn::before {
+    display: none;
+}
+
+.option-btn:hover:not(:disabled) {
+    background: linear-gradient(to bottom, #fff9c4 0%, #ffe082 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 9px 0 #000;
+}
+
+.option-btn:active:not(:disabled) {
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #000;
+}
+
+.option-btn.correct {
+    background: linear-gradient(to bottom, #81c784 0%, #66bb6a 100%);
+    color: white;
+    border-color: #2e7d32;
+    animation: correct-bounce 0.5s ease;
+    box-shadow: 0 6px 0 #1b5e20;
+    text-shadow: 2px 2px 0 #1b5e20;
+}
+
+.option-btn.correct::before {
+    display: none;
+}
+
+.option-btn.incorrect {
+    background: linear-gradient(to bottom, #e57373 0%, #ef5350 100%);
+    color: white;
+    border-color: #c62828;
+    animation: shake-mario 0.5s ease;
+    box-shadow: 0 6px 0 #8b0000;
+    text-shadow: 2px 2px 0 #8b0000;
+}
+
+.option-btn.incorrect::before {
+    display: none;
+}
+
+@keyframes correct-bounce {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.05); }
+    75% { transform: scale(0.95); }
+}
+
+@keyframes check-pop {
+    0% { transform: translateY(-50%) scale(0) rotate(-90deg); }
+    50% { transform: translateY(-50%) scale(1.2) rotate(10deg); }
+    100% { transform: translateY(-50%) scale(1) rotate(0deg); }
+}
+
+@keyframes shake-mario {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    75% { transform: translateX(-8px); }
+}
+
+@keyframes x-pop {
+    0% { transform: translateY(-50%) scale(0) rotate(90deg); }
+    50% { transform: translateY(-50%) scale(1.2) rotate(-10deg); }
+    100% { transform: translateY(-50%) scale(1) rotate(0deg); }
+}
+
+.option-btn:disabled {
+    cursor: pointer;
+    opacity: 1;
+}
+
+/* Mensajes de feedback - OCULTOS */
+.feedback-message {
+    display: none !important;
+}
+
+/* Botón intentar de nuevo estilo Mario */
+.retry-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.8rem;
+    padding: 12px 25px;
+    margin-top: 15px;
+    background: linear-gradient(to bottom, #ffd700 0%, #ffb700 100%);
+    border: 4px solid #000;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 5px 0 #000;
+    color: #000;
+    display: inline-block;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+}
+
+.retry-btn:hover {
+    background: linear-gradient(to bottom, #ffe033 0%, #ffc700 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 #000;
+}
+
+.retry-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 #000;
+}
+
+/* Caja de repaso estilo Mario */
+.recap-box {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border: 5px solid #1976d2;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+    box-shadow: 0 6px 0 #0d47a1;
+}
+
+.recap-box h4 {
+    color: #0d47a1;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+}
+
+.recap-box p {
+    color: #333;
+    margin: 12px 0;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.recap-box strong {
+    color: #d32f2f;
+}
+
+/* Pantalla de finalización estilo Mario */
+.trophy-icon {
+    font-size: 7rem;
+    text-align: center;
+    margin: 40px 0;
+    animation: trophy-spin 3s ease-in-out infinite;
+    filter: drop-shadow(5px 5px 0 rgba(0,0,0,0.3));
+}
+
+@keyframes trophy-spin {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(360deg) scale(1.1); }
+}
+
+.final-score {
+    background: #fff;
+    border: 5px solid #000;
+    border-radius: 20px;
+    padding: 50px;
+    margin: 30px 0;
+    text-align: center;
+    box-shadow: 0 10px 0 #666, inset 0 4px 0 rgba(255,215,0,0.3);
+}
+
+.final-score h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 0 rgba(255,255,0,0.3);
+}
+
+.score-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin: 30px 0;
+    font-size: 4rem;
+    color: #ffa000;
+    text-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+}
+
+.coin-icon.large {
+    font-size: 5rem;
+}
+
+.score-details {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 25px;
+}
+
+/* Animación de fiesta estilo Mario */
+.party-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.party-overlay.hidden {
+    display: none;
+}
+
+.party-message {
+    text-align: center;
+}
+
+.party-text {
+    font-size: 4rem;
+    color: #ffde00;
+    text-shadow: 
+        4px 4px 0 #ff5500,
+        -2px -2px 0 #000;
+    animation: party-bounce 0.5s ease-in-out infinite;
+}
+
+@keyframes party-bounce {
+    0%, 100% { transform: scale(1) rotate(-5deg); }
+    50% { transform: scale(1.2) rotate(5deg); }
+}
+
+.coins-flying {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    font-size: 4rem;
+}
+
+.coins-flying span {
+    animation: coin-jump 1s ease-out infinite;
+}
+
+.coins-flying span:nth-child(1) { animation-delay: 0s; }
+.coins-flying span:nth-child(2) { animation-delay: 0.1s; }
+.coins-flying span:nth-child(3) { animation-delay: 0.2s; }
+.coins-flying span:nth-child(4) { animation-delay: 0.3s; }
+.coins-flying span:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes coin-jump {
+    0% { 
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(-120px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Confetti estilo Mario */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Utilidades */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .title-mario {
+        font-size: 1.5rem;
+        padding: 20px;
+    }
+    
+    .mario-btn {
+        font-size: 0.75rem;
+        padding: 14px 25px;
+    }
+    
+    .option-btn {
+        font-size: 0.75rem;
+        padding: 18px;
+    }
+    
+    .question-box h3 {
+        font-size: 1rem;
+    }
+    
+    .party-text {
+        font-size: 2.5rem;
+    }
+    
+    .score-display {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-mario {
+        font-size: 1.2rem;
+        padding: 15px;
+    }
+    
+    .mario-btn {
+        font-size: 0.65rem;
+        padding: 12px 20px;
+    }
+    
+    .btn-secondary {
+        font-size: 0.55rem;
+        padding: 10px 15px;
+        word-break: break-word;
+        white-space: normal;
+        line-height: 1.4;
+        text-align: center;
+    }
+    
+    .option-btn {
+        font-size: 0.7rem;
+        padding: 15px;
+    }
+    
+    .container {
+        padding: 15px 10px 100px 10px;
+    }
+    
+    .mario-character {
+        font-size: 4rem;
+    }
+    
+    .block {
+        font-size: 3rem;
+    }
+}

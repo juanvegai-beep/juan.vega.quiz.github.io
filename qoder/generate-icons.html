@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Iconos - Mario Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        canvas {
+            border: 2px solid #333;
+            margin: 20px 0;
+            display: block;
+            border-radius: 10px;
+        }
+        button {
+            background: #FF6B6B;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #E03131;
+            transform: translateY(-2px);
+        }
+        .info {
+            color: #666;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Generador de Iconos</h1>
+        <p>Haz clic en los botones para generar y descargar los iconos</p>
+        
+        <canvas id="canvas192" width="192" height="192"></canvas>
+        <button onclick="generateIcon(192)">Generar icono 192x192</button>
+        
+        <canvas id="canvas512" width="512" height="512"></canvas>
+        <button onclick="generateIcon(512)">Generar icono 512x512</button>
+        
+        <div class="info">
+            <p><strong>Instrucciones:</strong></p>
+            <p>1. Haz clic en cada botón para generar el icono</p>
+            <p>2. Haz clic derecho sobre cada icono y selecciona "Guardar imagen como..."</p>
+            <p>3. Guarda los iconos como "icon-192.png" y "icon-512.png"</p>
+            <p>4. Coloca los archivos en la carpeta de tu proyecto</p>
+        </div>
+    </div>
+
+    <script>
+        function generateIcon(size) {
+            const canvas = document.getElementById(`canvas${size}`);
+            const ctx = canvas.getContext('2d');
+            
+            // Fondo degradado
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Dibujar "M" estilo Mario
+            ctx.fillStyle = '#FFD700';
+            ctx.font = `bold ${size * 0.6}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('M', size / 2, size / 2);
+            
+            // Borde
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = size * 0.05;
+            ctx.strokeText('M', size / 2, size / 2);
+            
+            // Decoración - estrella
+            ctx.fillStyle = '#FFD700';
+            ctx.font = `${size * 0.2}px Arial`;
+            ctx.fillText('⭐', size * 0.15, size * 0.15);
+            ctx.fillText('⭐', size * 0.85, size * 0.85);
+        }
+        
+        // Generar iconos automáticamente al cargar
+        window.addEventListener('load', () => {
+            generateIcon(192);
+            generateIcon(512);
+        });
+    </script>
+</body>
+</html>

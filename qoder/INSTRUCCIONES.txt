@@ -1,0 +1,194 @@
+═══════════════════════════════════════════════════════════════════
+   🎮 MARIO QUIZ APP - Aplicación de Estudio Interactiva
+═══════════════════════════════════════════════════════════════════
+
+✅ INSTALACIÓN Y USO
+
+1. GENERAR ICONOS (requerido para PWA)
+   ────────────────────────────────────
+   Opción A - Usando el navegador:
+   • Abre el archivo: generate-icons.html
+   • Haz clic derecho en cada icono generado
+   • Selecciona "Guardar imagen como..."
+   • Guarda como "icon-192.png" y "icon-512.png"
+   • Coloca los archivos en la carpeta principal del proyecto
+
+   Opción B - Usando Python (si tienes Pillow instalado):
+   • Ejecuta: python generate_icons.py
+   • Los iconos se crearán automáticamente
+
+2. CREAR ARCHIVO DE PREGUNTAS
+   ────────────────────────────
+   • Abre el archivo: create-excel-template.html
+   • Haz clic en "Descargar Excel de Ejemplo"
+   • Edita el archivo con tus propias preguntas
+   • Guarda el archivo como .xlsx o .xls
+
+   Estructura del Excel:
+   ┌─────────────┬──────────┬──────────┬──────────┬──────────┬──────────────────┬──────────────────┐
+   │ Pregunta    │ Opción 1 │ Opción 2 │ Opción 3 │ Opción 4 │ Respuesta Corr. │ Fundamento Legal │
+   ├─────────────┼──────────┼──────────┼──────────┼──────────┼──────────────────┼──────────────────┤
+   │ ¿Pregunta?  │ Opción A │ Opción B │ Opción C │ Opción D │ Opción B         │ Art. 123         │
+   └─────────────┴──────────┴──────────┴──────────┴──────────┴──────────────────┴──────────────────┘
+
+3. EJECUTAR LA APLICACIÓN
+   ────────────────────────
+   Opción A - Servidor Python:
+   • Abre la terminal en la carpeta del proyecto
+   • Ejecuta: python -m http.server 8000
+   • Abre el navegador en: http://localhost:8000
+
+   Opción B - Servidor Node.js:
+   • Ejecuta: npx http-server -p 8000
+   • Abre el navegador en: http://localhost:8000
+
+   Opción C - Live Server (VS Code):
+   • Instala la extensión "Live Server"
+   • Haz clic derecho en index.html
+   • Selecciona "Open with Live Server"
+
+4. INSTALAR COMO PWA EN ANDROID
+   ──────────────────────────────
+   • Abre la aplicación en Chrome móvil
+   • Toca el menú (⋮) > "Agregar a pantalla de inicio"
+   • La app se instalará como una aplicación nativa
+   • Funcionará sin conexión después de la primera carga
+
+
+═══════════════════════════════════════════════════════════════════
+   📋 CARACTERÍSTICAS
+═══════════════════════════════════════════════════════════════════
+
+✨ FUNCIONALIDADES PRINCIPALES:
+   • Diseño temático estilo Mario Bros con animaciones
+   • Carga de preguntas desde archivos Excel
+   • Sistema de dos preguntas: respuesta + fundamento legal
+   • Animaciones de celebración al acertar
+   • Sistema de puntuación con monedas
+   • Barra de progreso visual
+   • Repaso de pregunta y respuesta antes del fundamento
+   • Instalable como PWA en Android
+   • Funciona sin conexión (offline)
+   • Responsive - se adapta a móviles y tablets
+
+🎮 FLUJO DEL JUEGO:
+   1. Pantalla principal con puntuación acumulada
+   2. Carga de archivo Excel con preguntas
+   3. Pregunta principal con 4 opciones
+   4. Verificación y animación de resultado
+   5. Pregunta de fundamento legal con repaso
+   6. Verificación de fundamento
+   7. Siguiente pregunta o pantalla final
+   8. Pantalla de finalización con puntuación
+
+🎨 ANIMACIONES:
+   • Fondo animado con patrón de cuadrícula
+   • Personaje Mario saltando
+   • Botones con efecto 3D
+   • Monedas rotando
+   • Confetti al acertar
+   • Transiciones suaves entre pantallas
+   • Efectos de pulsación en puntuación
+
+
+═══════════════════════════════════════════════════════════════════
+   🔧 ESTRUCTURA DE ARCHIVOS
+═══════════════════════════════════════════════════════════════════
+
+qoder/
+│
+├── index.html                    ← Página principal
+├── styles.css                    ← Estilos y animaciones
+├── app.js                        ← Lógica de la aplicación
+├── manifest.json                 ← Configuración PWA
+├── service-worker.js             ← Service Worker para offline
+│
+├── generate-icons.html           ← Generador de iconos (navegador)
+├── generate_icons.py             ← Generador de iconos (Python)
+├── create-excel-template.html    ← Generador de plantilla Excel
+├── INSTRUCCIONES.txt             ← Este archivo
+│
+├── icon-192.png                  ← Icono PWA 192x192 (generar)
+└── icon-512.png                  ← Icono PWA 512x512 (generar)
+
+
+═══════════════════════════════════════════════════════════════════
+   ⚙️ PERSONALIZACIÓN
+═══════════════════════════════════════════════════════════════════
+
+CAMBIAR COLORES:
+   Edita styles.css y busca los siguientes colores:
+   • Fondo: #667eea, #764ba2
+   • Botón rojo: #FF6B6B
+   • Botón verde: #4ECDC4
+   • Dorado: #FFD700
+
+CAMBIAR TEXTOS:
+   Edita index.html para modificar:
+   • Título principal
+   • Mensajes de botones
+   • Textos de feedback
+
+AGREGAR SONIDOS:
+   • Busca elementos <audio> en index.html
+   • Agrega archivos .mp3 o .wav
+   • Descomentar las líneas de reproducción en app.js
+
+
+═══════════════════════════════════════════════════════════════════
+   🐛 SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════════════
+
+❌ Los iconos no aparecen:
+   → Asegúrate de generar icon-192.png y icon-512.png
+   → Colócalos en la carpeta principal del proyecto
+
+❌ El Excel no se carga:
+   → Verifica que tenga exactamente 7 columnas (A-G)
+   → La primera fila debe tener encabezados
+   → La respuesta correcta debe coincidir exactamente con una opción
+
+❌ No se instala como PWA:
+   → Debes usar HTTPS o localhost
+   → Verifica que manifest.json esté accesible
+   → Los iconos deben existir
+
+❌ No funciona offline:
+   → Abre la app al menos una vez con internet
+   → El Service Worker se registrará automáticamente
+
+
+═══════════════════════════════════════════════════════════════════
+   📱 COMPATIBILIDAD
+═══════════════════════════════════════════════════════════════════
+
+✅ Navegadores soportados:
+   • Chrome 60+
+   • Firefox 55+
+   • Safari 11+
+   • Edge 79+
+   • Chrome Android
+   • Safari iOS
+
+✅ Dispositivos:
+   • Android 5.0+
+   • iOS 11.3+
+   • Tablets
+   • Desktop
+
+
+═══════════════════════════════════════════════════════════════════
+   📧 SOPORTE
+═══════════════════════════════════════════════════════════════════
+
+Para reportar problemas o sugerencias:
+• Revisa este archivo de instrucciones
+• Verifica la consola del navegador (F12)
+• Asegúrate de tener los archivos correctos
+
+
+═══════════════════════════════════════════════════════════════════
+
+¡Buena suerte con tu estudio! 🎮🍄👸
+
+═══════════════════════════════════════════════════════════════════

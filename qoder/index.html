@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#5c94fc">
+    <meta name="description" content="Aplicación de estudio interactiva estilo Mario Bros">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Super Quiz Bros - App de Estudio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Ventana Principal -->
+    <div id="main-screen" class="screen active">
+        <div class="container">
+            <h1 class="title-mario">?</h1>
+            <div class="mario-character">🍄</div>
+            <button class="btn-primary mario-btn" onclick="app.goToConfig()">
+                <span class="btn-text">¡INICIAR JUEGO!</span>
+            </button>
+            <div class="coins-display">
+                <span class="coin-icon">⭐</span>
+                <span id="total-score">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ventana de Configuración -->
+    <div id="config-screen" class="screen">
+        <div class="container">
+            <div class="file-upload-area">
+                <div class="upload-box">
+                    <div class="upload-icon">📁</div>
+                    <p>Carga tu archivo Excel con las preguntas</p>
+                    <input type="file" id="excel-file" accept=".xlsx, .xls" onchange="app.loadExcel(event)">
+                    <label for="excel-file" class="btn-secondary mario-btn">
+                        SELECCIONAR ARCHIVO
+                    </label>
+                    <p id="file-name" class="file-name"></p>
+                </div>
+            </div>
+            <button class="btn-back mario-btn" onclick="app.goToMain()">
+                ← VOLVER
+            </button>
+            <button id="start-game-btn" class="btn-primary mario-btn" onclick="app.startGame()" disabled>
+                ¡COMENZAR AVENTURA! →
+            </button>
+        </div>
+    </div>
+
+    <!-- Ventana de Pregunta Principal -->
+    <div id="question-screen" class="screen">
+        <div class="container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="question-number">Pregunta <span id="current-question">1</span> de <span id="total-questions">0</span></div>
+            
+            <div class="question-box">
+                <h3 id="question-text"></h3>
+            </div>
+            
+            <div class="options-container" id="options-container">
+                <!-- Las opciones se generarán dinámicamente -->
+            </div>
+            
+            <div id="feedback-message" class="feedback-message"></div>
+            
+            <button id="next-to-fundamento-btn" class="btn-primary mario-btn hidden" onclick="app.goToFundamento()">
+                SIGUIENTE
+            </button>
+            
+            <button class="btn-back mario-btn" onclick="app.resetAllOptions('question')" ondblclick="app.exitGame()">
+                SALIR
+            </button>
+        </div>
+    </div>
+
+    <!-- Ventana de Fundamento Legal -->
+    <div id="fundamento-screen" class="screen">
+        <div class="container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill-fundamento"></div>
+            </div>
+            
+            <div class="recap-box">
+                <h4>📝 Repaso:</h4>
+                <p><strong>Pregunta:</strong> <span id="recap-question"></span></p>
+                <p><strong>Respuesta Correcta:</strong> <span id="recap-answer"></span></p>
+            </div>
+            
+            <div class="question-box fundamento-box">
+                <h3>⚖️ Seleccione el Fundamento Legal</h3>
+            </div>
+            
+            <div class="options-container" id="fundamento-options-container">
+                <!-- Las opciones se generarán dinámicamente -->
+            </div>
+            
+            <div id="feedback-fundamento-message" class="feedback-message"></div>
+            
+            <button id="next-question-btn" class="btn-primary mario-btn hidden" onclick="app.nextQuestion()">
+                SIGUIENTE
+            </button>
+            
+            <button class="btn-back mario-btn" onclick="app.resetAllOptions('fundamento')" ondblclick="app.exitGame()">
+                SALIR
+            </button>
+        </div>
+    </div>
+
+    <!-- Ventana de Finalización -->
+    <div id="finish-screen" class="screen">
+        <div class="container">
+            <h1 class="title-mario">🎉 ¡FELICIDADES! 🎉</h1>
+            <div class="trophy-icon">🏆</div>
+            <div class="final-score">
+                <h2>TU PUNTUACIÓN FINAL</h2>
+                <div class="score-display">
+                    <span class="coin-icon large">⭐</span>
+                    <span id="final-score-number">0</span>
+                </div>
+                <p class="score-details">
+                    Respuestas correctas: <span id="correct-answers">0</span>
+                </p>
+            </div>
+            <button class="btn-primary mario-btn" onclick="app.restartGame()">
+                🔄 JUGAR DE NUEVO
+            </button>
+            <button class="btn-secondary mario-btn" onclick="app.goToMain()">
+                🏰 PANTALLA PRINCIPAL
+            </button>
+        </div>
+    </div>
+
+    <!-- Animación de Fiesta -->
+    <div id="party-animation" class="party-overlay hidden">
+        <div class="confetti-container"></div>
+        <div class="party-message">
+            <div class="party-text">¡Correcto! 🎉</div>
+            <div class="coins-flying">
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio para efectos de sonido (opcional) -->
+    <audio id="correct-sound" preload="auto">
+        <!-- Se puede agregar un archivo de sonido aquí -->
+    </audio>
+    <audio id="wrong-sound" preload="auto">
+        <!-- Se puede agregar un archivo de sonido aquí -->
+    </audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Registrar Service Worker para PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('Service Worker registrado'))
+                    .catch(err => console.log('Error al registrar Service Worker:', err));
+            });
+        }
+    </script>
+</body>
+</html>
